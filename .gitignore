@@ -127,3 +127,11 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# kawa
+*.dist/
+*.build/
+*.onefile-build/
+Project_Default.xml
+*.bak
+main.exe

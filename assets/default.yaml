@@ -1,12 +1,5 @@
 # vrc2webp default configuration file
 
-# Where to delete files:
-# - keep - do not delete anything, keep original file with converted.
-# - trash - delete to system Recycle Bin, keeps space on disk used, but possible to restore. (Default)
-# - unlink - delete file permanently from file system.
-delete-mode: trash
-
-#
 # CPU priorities of processes: above_normal, normal, below_normal, idle
 # Using lower priorities by default to not interfere with other running software.
 # It's not possible to set realtime or high priorities for safety/sanity reasons.
@@ -20,15 +13,18 @@ own-priority-io: low
 recoders-priority-io: very_low
 
 # Where to watch files to recode to WEBP.
+# Windows environment %VARIABLES% are supported.
 watch-paths:
-  - '%USERPROFILE%\Pictures\VRChat\2021-11 - Copy\'
-#  - '%USERPROFILE%\Pictures\ChilloutVR\'
+  - '%USERPROFILE%\Pictures\VRChat\'
+  - '%USERPROFILE%\Pictures\ChilloutVR\'
 
 # Look for files in sub-folders.
-recursive: true
+# recursive: true
+# NOT IMPLEMENTED YET; ALWAYS RECURSIVE
 
-# Extensions of files to convert to WEBP.
-file-extensions: [.png, .jpg, .jpeg]
+# Extensions of original files to convert to WEBP.
+# Note: extensions .tmp.jpg, .tmp.png, ... are used internally and ignored.
+file-extensions: [ .png, .jpg, .jpeg ]
 
 # Change naming format of VRChat screenshots. Ex:
 # VRChat_3840x2160_2021-11-10_19-21-40.183.webp -> VRChat_2021-11-10_19-21-40.183_3840x2160.webp
@@ -39,6 +35,11 @@ vrc-swap-resolution-and-time: true
 # if 0 or negative - will choose automatically number of logical cores on your CPU.
 max-parallel-recodes: -1
 
-#
-# Try update modification time of files to be the same as originals.
+# Try update modification time of recoded WEBP files to be the same as originals.
 update-mtime: true
+
+# Where to delete original files:
+# - keep - do not delete anything, keep original file with converted.
+# - trash - delete to system Recycle Bin, keeps space on disk used, but possible to restore. (Default)
+# - unlink - delete file permanently from file system.
+delete-mode: trash
