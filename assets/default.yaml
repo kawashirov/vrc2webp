@@ -14,16 +14,34 @@ recoders-priority-io: very_low
 
 # Where to watch files to recode to WEBP.
 # Windows environment %VARIABLES% are supported.
+# \\REMOTE\Share\paths are also supported, but good network connection required to prevent issues.
 watch-paths:
   - '%USERPROFILE%\Pictures\VRChat\'
   - '%USERPROFILE%\Pictures\ChilloutVR\'
+
+# How to process given watch paths:
+# - observe - detect and recode new suitable files, run program indefinitely.
+# - scan - scan and recode all suitable files, then exit program.
+# - both - scan and recode all suitable files, then observe. (Default)
+# You can send CTRL+C event / SIGBREAK signal at any time to ask program to stop.
+# It may take few seconds to terminate subprocesses, clean up temp files and stop gracefully.
+watch-mode: both
 
 # Look for files in sub-folders.
 # recursive: true
 # NOT IMPLEMENTED YET; ALWAYS RECURSIVE
 
+# Number of seconds to wait before trying to process new observed files.
+# It's hard to detect if file just stored or being written right now. Scanning every handle for every file is overkill.
+# So vrc2webp just wait this given time and if file size is changed, then wait again and again in loop.
+new-files-timeout: 5.0
+
 # Extensions of original files to convert to WEBP.
+# JPEGs are also included if you used mods for JPEG screenshots before.
+# But recoding JPEGs usually does not give much better compression.
+# You may exclude it to save time if you have tons of JPEGs.
 # Note: extensions .tmp.jpg, .tmp.png, ... are used internally and ignored.
+# You may see those .tmp files during recoding, it will be rolled back automatically when complete or cancelled.
 file-extensions: [ .png, .jpg, .jpeg ]
 
 # Change naming format of VRChat screenshots. Ex:
