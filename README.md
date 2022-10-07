@@ -1,7 +1,7 @@
 # `vrc2webp.exe`
 A tool for converting (not only) VRChat camera shots from unoptimized PNGs to efficient WebPs.
 
-![vrc2webp icon](./logo/logo.ico "vrc2webp logo")
+<img src="./logo/logo_512.webp" width="256">
 
 ( Download link at the end of page )
 
@@ -53,8 +53,11 @@ but if you don't want extra software and in case something fucked up you can use
 If you just run `vrc2webp.exe` you only get smol list of switches and it's description. Because if you launch a program and it start to mess with your files it's a bad practice.
 
 To run `vrc2webp.exe` in recoding mode you need to pass `-r` argument, like that `C:\Path\To\Your\vrc2webp.exe -r`.<br>
-You mad do that in console or via `.bat` or shortcut.<br>
-It will run the program [with default configuration](./assets/default.yaml).
+You can do that in console or via `.bat` or shortcut. Example shortcut:<br>
+<img src="./manual/ex_shortcut.webp" width="400">
+
+It will run the program [with default configuration](./assets/default.yaml). You should get something like this:<br>
+<img src="./manual/ex_console.webp" width="600"><br>
 
 If you want to run it with your custom config, you must provide it with `-c config` argument.<br>
 Like that `C:\Path\To\Your\vrc2webp.exe -r -c C:\Path\To\Your\config.yaml`.<br>
