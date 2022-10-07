@@ -58,11 +58,11 @@ You can do that in console or via `.bat` or shortcut. Example shortcut:<br>
 
 It will run the program [with default configuration](./assets/default.yaml). You should get something like this:<br>
 <img src="./manual/ex_console.webp" width="600"><br>
+Press `Ctrl+C` in console to ask the program to stop. **DO NOT** terminate `vrc2webp.exe`, especially when it does it's job: it manages child processes and unexpected things might happen if the parent just dies.
 
 If you want to run it with your custom config, you must provide it with `-c config` argument.<br>
 Like that `C:\Path\To\Your\vrc2webp.exe -r -c C:\Path\To\Your\config.yaml`.<br>
 Yea, the config [in the YAML format](https://en.wikipedia.org/wiki/YAML).
-Press `Ctrl+C` in console to ask the program to stop. **DO NOT** terminate `vrc2webp.exe`, especially when it does it's job: it manages child processes and unexpected things might happen if the parent just dies.
 
 If you want to get your own copy of default config you can run `-e` (instead of `-r`) to just export the config and exit.<br>
 You can edit exported config for yourself after that.<br>
