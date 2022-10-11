@@ -27,13 +27,23 @@ watch-paths:
 # It may take few seconds to terminate subprocesses, clean up temp files and stop gracefully.
 watch-mode: both
 
+# Randomize order of processing files and folders during scan.
+# Can help find necessary files faster and start processing earlier in case
+# if you have tons of not suitable or already processed files on slow HDD.
+# This only allicable to 'watch-mode' set to 'scan' or 'both'
+randomize-scan: true
+
 # Look for files in sub-folders.
 # recursive: true
 # NOT IMPLEMENTED YET; ALWAYS RECURSIVE
 
-# Number of seconds to wait before trying to process new observed files.
+# Number of seconds to wait before trying to process new observed files. Set 0 to disable this check.
 # It's hard to detect if file just stored or being written right now. Scanning every handle for every file is overkill.
 # So vrc2webp just wait this given time and if file size is changed, then wait again and again in loop.
+# Note: If there is a lot of files, large timeout can SIGNIFICANTLY increase time of processing.
+# Ex: You have 720+ files and timeout 5sec, so overall dealy 720*5=3600sec which is A HOUR.
+# So, if you SURE nothing else is touching your watch-path folders it RECOMMENDED to set timeout 0.
+# This behavior is work-around and will be changed in the future for more efficient scheduling.
 new-files-timeout: 5.0
 
 # Extensions of original files to convert to WEBP.
@@ -43,6 +53,29 @@ new-files-timeout: 5.0
 # Note: extensions .tmp.jpg, .tmp.png, ... are used internally and ignored.
 # You may see those .tmp files during recoding, it will be rolled back automatically when complete or cancelled.
 file-extensions: [ .png, .jpg, .jpeg ]
+
+# Exclude files with size less than given value from recoding.
+# WebP may not be that much efficient on small files or images saved with bad quality (like JPEG 90%)
+# So it's okay to skip small files from processing.
+# Measured in bytes, allowed suffixes are 'K' (x1024) and 'M' (x1024x1024). Set 0 to ignore limit.
+ignore-files-less-than: 500K
+
+# Large files can also be a trouble, as it needs a lot of RAM and CPU resources for recoding.
+# Limited by default for safety/sanity reasons.
+# Measured in bytes, allowed suffixes are 'K' (x1024) and 'M' (x1024x1024). Set 0 to ignore limit.
+ignore-files-greater-than: 100M
+
+# Some folders/files may have special purpose, so there is no reason to scan or recode those objects.
+# You can alter options below to exclude some of your folders/files from processing.
+# For example, I have 'Steam' sub-folder in my VR-Screenshots folder contains historical
+# ugly already hypercompressed JPEGs with artifacts made by Steam,
+# so I set ignore-objects-path-contains: [ 'Steam' ] to ignore files in that folder.
+ignore-objects-hidden: true
+ignore-objects-readonly: true
+ignore-objects-system: true
+ignore-objects-name-stats-with: [ '.' ]
+ignore-objects-name-ends-with: [ '~' ]
+ignore-objects-path-contains: [ ]
 
 # Change naming format of VRChat screenshots. Ex:
 # VRChat_3840x2160_2021-11-10_19-21-40.183.webp -> VRChat_2021-11-10_19-21-40.183_3840x2160.webp
