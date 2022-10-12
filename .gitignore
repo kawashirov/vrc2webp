@@ -134,4 +134,6 @@ dmypy.json
 *.onefile-build/
 Project_Default.xml
 *.bak
-main.exe
+vrc2webp.exe
+govno
+logs

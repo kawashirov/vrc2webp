@@ -1,2 +1,2 @@
 .\venv\Scripts\activate.ps1
-python main.py
+python -m vrc2webp
