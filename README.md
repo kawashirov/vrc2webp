@@ -26,7 +26,7 @@ but if you don't want extra software and in case something fucked up you can use
 
 ## Features and how it works
 - Only for Windows yet.
-- [Configurable!](./assets/default.yaml)
+- [Configurable!](./vrc2webp/assets/default.yaml)
 - Can be used for **mass-recoding** any large storages of common image formats to WebP.
 - But in default configuration targets for **VRChat** and **ChilloutVR** default screenshots folders.
 - Can change naming pattern of VRChat screenshots for better sorting (is on by default),
