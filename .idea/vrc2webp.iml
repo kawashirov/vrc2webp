@@ -8,6 +8,7 @@
       <excludeFolder url="file://$MODULE_DIR$/govno" />
       <excludeFolder url="file://$MODULE_DIR$/vrc2webp.build" />
       <excludeFolder url="file://$MODULE_DIR$/vrc2webp.dist" />
+      <excludeFolder url="file://$MODULE_DIR$/vrc2webp.onefile-build" />
     </content>
     <orderEntry type="jdk" jdkName="Python (vrc2webp)" jdkType="Python SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
