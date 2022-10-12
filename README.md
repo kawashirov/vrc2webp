@@ -31,6 +31,7 @@ but if you don't want extra software and in case something fucked up you can use
 - But in default configuration targets for **VRChat** and **ChilloutVR** default screenshots folders.
 - Can change naming pattern of VRChat screenshots for better sorting (is on by default),
   <br> ex. `VRChat_3840x2160_2021-11-10_19-21-40.183.png` -> `VRChat_2021-11-10_19-21-40.183_3840x2160.webp`
+- Can filter files by min/max size, attributes and names.
 - Can both scan for existing and observe for new files in configured folders recursively (in sub folders).
 - So can be run in background with VRChat and convert screenshots **immediately** (by default).
 - **Highly performant and fast as fuck:**
@@ -46,28 +47,37 @@ but if you don't want extra software and in case something fucked up you can use
 - Uses maximum compression settings, so produces **smallest files even possible**, but may took many time for recoding process.
 - Support for JPEG is enabled (by default) in case you used *\*something\** before to store your screenshots as JPEGs. EXIF metadata is **NOT** keept.
   If you used bad quality settings for your JPEGs (like 90%, 4:2:0, etc), the WebP **may not have less file size**, as `vrc2webp.exe` treats all files as high quality pictures and tries to avoid any artifacts as possible, in this case exclude JPEGs from processing in config.
+- If for some reason output WebP will be larger, than original, it will roll back to original.
+- Actually will roll back if something goes wrong. Outputs checked additionally using [`webpinfo.exe`](https://developers.google.com/speed/webp/docs/webpinfo?hl=en).
 
 ## How to use
 `vrc2webp.exe` is console application yet. No GUI and no plans for that. So you need to launch it with necessary arguments provden and stare into the console.
 
-If you just run `vrc2webp.exe` you only get smol list of switches and it's description. Because if you launch a program and it start to mess with your files it's a bad practice.
+If you just run `vrc2webp.exe` you only get smol help with list of switches and it's description.<br>
+Because if you launch a program and it start to mess with your files it's a bad practice.
 
-To run `vrc2webp.exe` in recoding mode you need to pass `-r` argument, like that `C:\Path\To\Your\vrc2webp.exe -r`.<br>
+To run `vrc2webp.exe` in **recoding** mode you need to **pass `-r` argument**, like that `C:\Path\To\Your\vrc2webp.exe -r`.<br>
 You can do that in console or via `.bat` or shortcut. Example shortcut:<br>
 <img src="./manual/ex_shortcut.webp" width="400">
 
-It will run the program [with default configuration](./assets/default.yaml). You should get something like this:<br>
+It will run the program [with default configuration](./vrc2webp/assets/default.yaml). You should get something like this:<br>
 <img src="./manual/ex_console.webp" width="600"><br>
 Press `Ctrl+C` in console to ask the program to stop. **DO NOT** terminate `vrc2webp.exe`, especially when it does it's job: it manages child processes and unexpected things might happen if the parent just dies.
 
-If you want to run it with your custom config, you must provide it with `-c config` argument.<br>
+If you want to run it **with your custom config**, you must provide it with `-c config` argument.<br>
 Like that `C:\Path\To\Your\vrc2webp.exe -r -c C:\Path\To\Your\config.yaml`.<br>
 Yea, the config [in the YAML format](https://en.wikipedia.org/wiki/YAML).
 
-If you want to get your own copy of default config you can run `-e` (instead of `-r`) to just export the config and exit.<br>
+If you want to **get your own copy** of default config you can run `-e` (instead of `-r`) to just export the config and exit.<br>
 You can edit exported config for yourself after that.<br>
 Like that `C:\Path\To\Your\vrc2webp.exe -e -c C:\Path\To\Your\config.yaml`.
 
 There is also test mode `-t` (instead of `-r` and `-e`) for testing embedded binaries and `-d` for extra debugging log messages. You don't need it.
+
+## Issues
+I can't guarantee responses on issues at this moment, so I disabled "Issues" page. Feel free to contact me directly, if you have any troubles:
+- Discord: `kawashirov#8363` (preferred way)
+- [VRChatRU](https://discord.gg/Kw55MAU) [Discord Thread](https://discord.com/channels/666306330230915093/1023951987512983702/)
+- [Ask VRChat Forums Thread](https://ask.vrchat.com/t/vrc2webp/14246)
 
 ## [Download here](https://github.com/kawashirov/vrc2webp/releases)
