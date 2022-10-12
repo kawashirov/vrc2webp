@@ -40,10 +40,8 @@ randomize-scan: true
 # Number of seconds to wait before trying to process new observed files. Set 0 to disable this check.
 # It's hard to detect if file just stored or being written right now. Scanning every handle for every file is overkill.
 # So vrc2webp just wait this given time and if file size is changed, then wait again and again in loop.
-# Note: If there is a lot of files, large timeout can SIGNIFICANTLY increase time of processing.
-# Ex: You have 720+ files and timeout 5sec, so overall dealy 720*5=3600sec which is A HOUR.
-# So, if you SURE nothing else is touching your watch-path folders it RECOMMENDED to set timeout 0.
-# This behavior is work-around and will be changed in the future for more efficient scheduling.
+# Note: While watching and waiting for one file, vrc2webp *CAN* process other files, so this timeout won't stack:
+# if you have 1k+ files overall delay will *NOT* be 10k+ sec (1hr+), it will be insensible.
 new-files-timeout: 5.0
 
 # Extensions of original files to convert to WEBP.
@@ -58,7 +56,7 @@ file-extensions: [ .png, .jpg, .jpeg ]
 # WebP may not be that much efficient on small files or images saved with bad quality (like JPEG 90%)
 # So it's okay to skip small files from processing.
 # Measured in bytes, allowed suffixes are 'K' (x1024) and 'M' (x1024x1024). Set 0 to ignore limit.
-ignore-files-less-than: 500K
+ignore-files-less-than: 100K
 
 # Large files can also be a trouble, as it needs a lot of RAM and CPU resources for recoding.
 # Limited by default for safety/sanity reasons.
