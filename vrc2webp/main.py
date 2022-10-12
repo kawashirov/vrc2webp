@@ -14,8 +14,9 @@ from asyncio.subprocess import create_subprocess_exec
 
 import psutil
 
+from .version import APP_VERION
 from . import util
-from .util import APP_VERION, is_debug, log_path, log_exc
+from .util import is_debug, log_path, log_exc
 from . import config
 from . import scanner
 from . import observer

@@ -24,6 +24,6 @@
 # nuitka-project: --nofollow-import-to=watchdog.observers.kqueue
 
 if __name__ == '__main__':
-	import vrc2webp.main
+	from . import main
 
-	vrc2webp.main.Main().main()
+	main.Main().main()

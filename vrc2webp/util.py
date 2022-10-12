@@ -10,7 +10,6 @@ from pathlib import Path
 if typing.TYPE_CHECKING:
 	from collections.abc import Coroutine
 
-APP_VERION = '0.1.1'
 APP_DEBUG = bool(hasattr(sys, 'gettrace') and sys.gettrace())
 
 LOG = logging.getLogger('vrc2webp')
