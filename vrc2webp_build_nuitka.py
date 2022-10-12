@@ -1,6 +1,8 @@
 import subprocess
 import sys
 import signal
+import time
+import datetime
 
 if __name__ == '__main__':
 	from vrc2webp.version import APP_VERION
@@ -20,24 +22,33 @@ if __name__ == '__main__':
 		'--warn-unusual-code',
 		'--show-progress',
 		'--show-modules',
+		#
 		'--windows-company-name=kawashirov',
 		'--windows-product-name=vrc2webp',
 		f'--windows-file-description={url}',
 		f'--windows-file-version={APP_VERION}',
 		f'--windows-product-version={APP_VERION}',
+		'--windows-icon-from-ico=logo\\logo.ico',
+		'--onefile-tempdir-spec=%TEMP%\\vrc2webp_%PID%_%TIME%',
+		#
 		'--include-package=vrc2webp',
 		'--include-package-data=vrc2webp',
 		'--python-flag=-OO',
-		'--onefile-tempdir-spec=%TEMP%\\vrc2webp_%PID%_%TIME%',
-		'--windows-icon-from-ico=logo\\logo.ico',
+		'--follow-stdlib',
 		*(f'--nofollow-import-to={m}' for m in nofollow),
+		#
 		'--onefile', 'vrc2webp',
 		'-o', 'vrc2webp.exe'
 	]
 
-	with subprocess.Popen(nuitka_cmd, stdin=subprocess.DEVNULL) as proc:
-		while proc.poll() is None:
-			try:
-				proc.wait()
-			except KeyboardInterrupt:
-				proc.send_signal(signal.SIGBREAK)
+	time_begin = time.monotonic()
+	try:
+		with subprocess.Popen(nuitka_cmd, stdin=subprocess.DEVNULL) as proc:
+			while proc.poll() is None:
+				try:
+					proc.wait()
+				except KeyboardInterrupt:
+					proc.send_signal(signal.SIGBREAK)
+	finally:
+		dt = datetime.timedelta(seconds=time.monotonic() - time_begin)
+		print(f'Nuitka building time spent: {dt!s}')
